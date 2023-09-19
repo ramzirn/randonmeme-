@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>GIF Aléatoire</title>
+</head>
+<style>
+    *{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #333333;
+    text-decoration-color: #FFFFFF;
+    
+}
+.general{
+    height: 100vh;
+}
+div.bc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    
+    margin-left: auto;
+    margin-right: auto ;
+}
+
+
+div.container{
+    background: grey;
+    background-size: cover;
+    padding: 5%;
+    border-radius: 15px;
+
+    
+}
+
+
+div.gif{
+    display: flex;
+    background-color: white;
+    
+}
+button{
+    text-decoration: none;
+    border-radius: 15px;
+    outline: none;
+    background: grey ;
+    padding:10px ;
+    border: none ;
+    cursor: pointer;
+    height: 40px;
+    width: 100px;
+
+    
+}
+div.bouttons{
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    margin-top: 20px;
+
+}
+
+button:hover{
+    background: #CCCCCC;
+}
+</style>
+
+<body>
+    <div class="general">
+    
+    <div class="bc">
+    <h1>GIF Aléatoire</h1>
+    <div class="container">
+        
+        <div class="gif">
+            <img id= "gif" src="{{ gif_url }}" >
+        </div>
+
+    </div>
+    <div class="bouttons">
+        <button onclick="location.reload()">
+            New gif 
+        </button>
+        <button id="copy">
+            Copy gif link 
+
+        </button>
+    </div>
+
+</div>
+<script>
+    const link= document.getElementById("gif")
+    const srcValue = link.getAttribute('src');
+
+
+    const copyButton = document.getElementById('copy');
+
+        // Ajoutez un gestionnaire d'événements au clic du bouton
+        copyButton.addEventListener('click', function () {
+            // Récupérez la valeur de l'attribut src
+            const srcValue = link
+
+            // Créez un élément de texte temporaire pour copier la valeur
+            const tempInput = document.createElement('input');
+            tempInput.value = srcValue;
+
+            // Ajoutez l'élément au DOM (temporairement)
+            document.body.appendChild(tempInput);
+
+            // Sélectionnez le contenu de l'élément de texte
+            tempInput.select();
+
+            // Copiez le contenu dans le presse-papiers de l'utilisateur
+            document.execCommand('copy');
+
+            // Supprimez l'élément de texte temporaire
+            document.body.removeChild(tempInput);
+
+            // Affichez un message de confirmation
+            alert('La valeur de src a été copiée dans le presse-papiers : ' + srcValue);
+        });
+
+
+    
+</script>
+</body>
+</html>
